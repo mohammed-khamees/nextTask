@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Button, TextInput } from 'react-native';
+import { View, Button, TextInput, Alert } from 'react-native';
+import firebase from 'firebase';
 
 const Register = () => {
 	const [name, setName] = useState('');
@@ -7,7 +8,15 @@ const Register = () => {
 	const [password, setPassword] = useState('');
 
 	const onRegister = () => {
-		console.log('Register');
+		firebase
+			.auth()
+			.createUserWithEmailAndPassword(email, password)
+			.then((res) => {
+				Alert.alert('Registered Successfully');
+			})
+			.catch((err) => {
+				Alert.alert('Opp! Something Went Wrong');
+			});
 	};
 
 	return (

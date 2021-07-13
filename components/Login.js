@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
-import { View, Button, TextInput } from 'react-native';
+import { View, Button, TextInput, Alert } from 'react-native';
+import firebase from 'firebase';
 
 const Login = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
 	const onLogin = () => {
-		console.log('Login');
+		firebase
+			.auth()
+			.signInWithEmailAndPassword(email, password)
+			.then((res) => {
+				Alert.alert('LoggedIn Successfully');
+			})
+			.catch((err) => {
+				Alert.alert('Opp! Something Went Wrong');
+			});
 	};
 
 	return (
