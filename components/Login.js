@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Button, TextInput, Alert } from 'react-native';
+import { StyleSheet, View, Button, TextInput, Alert } from 'react-native';
 import firebase from 'firebase';
 
 const Login = () => {
@@ -19,7 +19,7 @@ const Login = () => {
 	};
 
 	return (
-		<View style={{ flex: 1, justifyContent: 'center' }}>
+		<View style={styles.container}>
 			<TextInput
 				placeholder="email here...."
 				onChangeText={(email) => setEmail(email)}
@@ -29,9 +29,18 @@ const Login = () => {
 				secureTextEntry={true}
 				onChangeText={(password) => setPassword(password)}
 			/>
-			<Button title="Login" onPress={() => onLogin()} />
+			<Button title="Login" onPress={onLogin} />
 		</View>
 	);
 };
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		backgroundColor: '#fff',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+});
 
 export default Login;

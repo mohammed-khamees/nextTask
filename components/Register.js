@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Button, TextInput, Alert } from 'react-native';
+import { StyleSheet, View, Button, TextInput, Alert } from 'react-native';
 import firebase from 'firebase';
 
 const Register = () => {
@@ -20,7 +20,7 @@ const Register = () => {
 	};
 
 	return (
-		<View style={{ flex: 1, justifyContent: 'center' }}>
+		<View style={styles.container}>
 			<TextInput
 				placeholder="name here...."
 				onChangeText={(name) => setName(name)}
@@ -34,9 +34,18 @@ const Register = () => {
 				secureTextEntry={true}
 				onChangeText={(password) => setPassword(password)}
 			/>
-			<Button title="Register" onPress={() => onRegister()} />
+			<Button title="Register" onPress={onRegister} />
 		</View>
 	);
 };
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		backgroundColor: '#fff',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+});
 
 export default Register;
